@@ -11,9 +11,11 @@ def setup():
     with gzip.open('./novel-model-markovify.json.gz') as fh:
         return Text.from_json(fh.read())
 
-@runway.command(name='generate',
-                inputs={'max_len': number(default=80, min=10, max=1000)},
-                outputs={'output': text()})
+@runway.command(
+    name='generate',
+    inputs={'max_len': number(default=80, min=10, max=1000),
+        'seed': number(default=0, min=0, max=1e6)},
+    outputs={'output': text()})
 def generate(model, args):
     print('[GENERATE] Ran with max_len value "{}"'.format(args['max_len']))
     output = model.make_short_sentence(args['max_len'])
