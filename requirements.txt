@@ -1,0 +1,2 @@
+runway-python==0.0.57
+markovify==0.7.1
