@@ -12,7 +12,7 @@ def setup():
         return Text.from_json(fh.read())
 
 @runway.command(name='generate',
-                inputs={'max_len': number(default=80)},
+                inputs={'max_len': number(default=80, min=10, max=1000)},
                 outputs={'output': text()})
 def generate(model, args):
     print('[GENERATE] Ran with max_len value "{}"'.format(args['max_len']))
